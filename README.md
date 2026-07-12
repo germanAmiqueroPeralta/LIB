@@ -56,6 +56,28 @@ responder `{"estado": "ok", ...}`.
 > Tarea de VSCode equivalente: `Backend: Ejecutar servidor Flask`
 > (atajo por defecto: `Ctrl + Shift + B`).
 
+### 4. Acceder desde un celular en la misma red Wi-Fi
+
+El backend ya está configurado para escuchar en todas las interfaces
+(`HOST = "0.0.0.0"`), así que podrás abrir la app desde otro dispositivo
+conectado a la misma red local.
+
+1. Encuentra la IP local de tu PC. En Windows, abre PowerShell y ejecuta:
+   ```powershell
+   ipconfig
+   ```
+   Busca la dirección IPv4 de tu adaptador Wi-Fi, por ejemplo
+   `192.168.1.50`.
+2. En el celular, abre el navegador e ingresa:
+   ```text
+   http://192.168.1.50:5000
+   ```
+3. Si el navegador no carga, revisa que el firewall de Windows permita
+   conexiones entrantes al puerto `5000`.
+
+> Con esto, cualquier dispositivo en tu red local puede abrir la
+> aplicación completa desde el mismo servidor.
+
 La primera vez que corres el backend se crea automáticamente el archivo
 `backend/database.db` con las tablas necesarias — no necesitas crear
 nada a mano.
@@ -114,6 +136,43 @@ python -m pytest --cov=. --cov-report=term-missing
 | GET | `/api/ventas/resumen/mas-vendidos` | Ranking de más vendidos |
 
 Contrato completo en [`specs/plan.md`](./specs/plan.md#5-contrato-de-la-api-rest).
+
+## 🚀 Despliegue en la nube
+
+Este proyecto puede desplegarse en servicios como **Render**, **Railway** o
+**PythonAnywhere** sin cambios adicionales. El backend ya está preparado para
+leer el puerto de la nube usando la variable `PORT`.
+
+### Opción 1: Render
+
+1. Crea una cuenta en https://render.com
+2. Crea un nuevo servicio web y conecta tu repositorio
+3. Configura:
+   - Root directory: la raíz del repositorio
+   - Build command: `pip install -r requirements.txt`
+   - Start command: `python backend/app.py`
+4. Render asignará automáticamente una URL pública. Copia esa URL y
+   abre tu aplicación.
+
+### Opción 2: Railway
+
+1. Crea una cuenta en https://railway.app
+2. Importa el repositorio desde GitHub
+3. Establece el comando de arranque:
+   `python backend/app.py`
+4. Railway también usará la variable `PORT` automáticamente.
+
+### Opción 3: PythonAnywhere
+
+1. Crea una cuenta en https://www.pythonanywhere.com
+2. Sube el repositorio o clona desde GitHub
+3. Configura una nueva web app de tipo Flask
+4. Usa `backend/app.py` como punto de entrada y asegúrate de instalar
+   `requirements.txt`
+
+> Nota: si usas Render o Railway, la aplicación ya funcionará con el
+> framework actual porque `backend/app.py` sirve el frontend desde la carpeta
+> `frontend`.
 
 ## 🚀 Próximos pasos sugeridos
 
