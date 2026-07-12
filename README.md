@@ -150,8 +150,10 @@ leer el puerto de la nube usando la variable `PORT`.
 3. Configura:
    - Root directory: la raíz del repositorio
    - Build command: `pip install -r requirements.txt`
-   - Start command: `python backend/app.py`
-4. Render asignará automáticamente una URL pública. Copia esa URL y
+   - Start command: `gunicorn -w 4 backend.app:create_app`
+4. Agrega la variable de entorno opcional:
+   - `DEBUG = false`
+5. Render asignará automáticamente una URL pública. Copia esa URL y
    abre tu aplicación.
 
 ### Opción 2: Railway
