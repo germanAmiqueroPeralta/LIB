@@ -5,7 +5,7 @@ Reglas de negocio para los pedidos de clientes.
 from datetime import datetime
 from models.pedido import Pedido, DetallePedido
 from models.venta import Venta, DetalleVenta
-from backend.repositories.venta_repository import VentaRepository
+from repositories.venta_repository import VentaRepository
 
 
 class PedidoServiceError(Exception):
