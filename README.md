@@ -148,9 +148,9 @@ leer el puerto de la nube usando la variable `PORT`.
 1. Crea una cuenta en https://render.com
 2. Crea un nuevo servicio web y conecta tu repositorio
 3. Configura:
-   - Root directory: la raíz del repositorio
-   - Build command: `pip install -r requirements.txt`
-   - Start command: `gunicorn -w 4 backend.app:create_app`
+   - Root directory: `backend`
+   - Build command: `pip install -r ../requirements.txt`
+   - Start command: `gunicorn -w 4 app:app`
 4. Agrega la variable de entorno opcional:
    - `DEBUG = false`
 5. Render asignará automáticamente una URL pública. Copia esa URL y

@@ -1,5 +1,5 @@
 import pytest
-from routes import auth as auth_module
+from backend.routes import auth as auth_module
 
 
 def test_register_login_logout_and_me(app_cliente, monkeypatch):
